@@ -10,14 +10,17 @@ public class Image {
     private int id;
     private String description;
     private String dimensions;
+    @ManyToOne
+    @JoinColumn
+    private Blog blog;
 
     public int getId() {
         return id;
     }
 
-    @ManyToOne
-    @JoinColumn
-    private Blog blog;
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getDescription() {
         return description;

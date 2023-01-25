@@ -42,12 +42,12 @@ public class ImageService {
         //In case the image is null, return 0
         String dimensions=image.getDimensions();
 
-        int I=dimensions.indexOf("x");
+        int I=dimensions.indexOf("X");
         int N=dimensions.length();
         int  R=Integer.valueOf(dimensions.substring(0,I));
         int C=Integer.valueOf(dimensions.substring(I+1,N));
 
-        int i=screenDimensions.indexOf("x");
+        int i=screenDimensions.indexOf("X");
         int n=screenDimensions.length();
         int r=Integer.valueOf(screenDimensions.substring(0,i));
         int c=Integer.valueOf(screenDimensions.substring(i+1,n));

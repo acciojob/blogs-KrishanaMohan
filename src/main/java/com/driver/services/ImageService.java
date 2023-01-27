@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class ImageService {
@@ -53,42 +54,40 @@ public class ImageService {
     public int countImagesInScreen(Image image, String screenDimensions) {
         //Find the number of images of given dimensions that can fit in a screen having `screenDimensions`
         //In case the image is null, return 0
-        String dimensions=image.getDimensions();
+      //  String dimensions=image.getDimensions();
 
-        int I=dimensions.indexOf("X");
-        int N=dimensions.length();
-        int  R=Integer.valueOf(dimensions.substring(0,I));
-        int C=Integer.valueOf(dimensions.substring(I+1,N));
-
-        int i=screenDimensions.indexOf("X");
-        int n=screenDimensions.length();
-        int r=Integer.valueOf(screenDimensions.substring(0,i));
-        int c=Integer.valueOf(screenDimensions.substring(i+1,n));
-
-        int count=0;
-//        while(R>=r){
-//            R-=r;
-//            int col=C;
-//            while(col>=c){
+//        int I=dimensions.indexOf("X");
+//        int N=dimensions.length();
+//        int  R=Integer.valueOf(dimensions.substring(0,I));
+//        int C=Integer.valueOf(dimensions.substring(I+1,N));
+//
+//        int i=screenDimensions.indexOf("X");
+//        int n=screenDimensions.length();
+//        int r=Integer.valueOf(screenDimensions.substring(0,i));
+//        int c=Integer.valueOf(screenDimensions.substring(i+1,n));
+//
+//        int count=0;
+//        if(R>=r){
+//            R=R-r;
+//            while(C>=c){
 //                count++;
-//                col-=c;
+//                C-=c;
 //            }
 //        }
+//        int fitImage=count;
+//        while(R>=r){
+//            R-=r;
+//            count+=fitImage;
+//        }
+//
+//        return count;
 
-        if(R>=r){
-            R=R-r;
-            while(C>=c){
-                count++;
-                C-=c;
-            }
+        if (screenDimensions.split("X").length == 2 || Objects.nonNull(image)) {
+            Integer maxLength = Integer.parseInt(screenDimensions.split("X")[0]) / Integer.parseInt(image.getDimensions().split("X")[0]) ;
+            Integer maxBreadth = Integer.parseInt(screenDimensions.split("X")[1]) / Integer.parseInt(image.getDimensions().split("X")[1]);
+            return maxLength * maxBreadth;
         }
-        int fitImage=count;
-        while(R>=r){
-            R-=r;
-            count+=fitImage;
-        }
-
-        return count;
+        return 0;
 
     }
 }

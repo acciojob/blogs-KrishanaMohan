@@ -9,9 +9,6 @@ public class Image {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int id;
     private String description;
-
-
-
     private String dimensions;
     @ManyToOne
     @JoinColumn

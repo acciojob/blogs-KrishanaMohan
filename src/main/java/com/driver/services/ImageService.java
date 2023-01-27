@@ -26,6 +26,19 @@ public class ImageService {
         image.setBlog(blog);
         blogRepository.save(blog);
         return image;
+
+//        Image image=new Image(description,dimensions);
+//        image.setBlog(blog);
+//        List<Image> res=blog.getImageList();
+//        if(res==null){
+//            res=new ArrayList<>();
+//        }
+//        res.add(image);
+//        blog.setImageList(res);
+//        imageRepository2.save(image);
+//        blogRepository.save(blog);
+//        return image;
+
     }
 
     public void deleteImage(Image image){
@@ -53,13 +66,26 @@ public class ImageService {
         int c=Integer.valueOf(screenDimensions.substring(i+1,n));
 
         int count=0;
+//        while(R>=r){
+//            R-=r;
+//            int col=C;
+//            while(col>=c){
+//                count++;
+//                col-=c;
+//            }
+//        }
+
+        if(R>=r){
+            R=R-r;
+            while(C>=c){
+                count++;
+                C-=c;
+            }
+        }
+        int fitImage=count;
         while(R>=r){
             R-=r;
-            int col=C;
-            while(col>=c){
-                count++;
-                col-=c;
-            }
+            count+=fitImage;
         }
 
         return count;

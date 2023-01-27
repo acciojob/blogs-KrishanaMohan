@@ -35,7 +35,9 @@ public class BlogService {
         //updating the blog details
         //Updating the userInformation and changing its blogs
 
-        Blog blog=new Blog(title,content);
+        Blog blog=new Blog();
+        blog.setTitle(title);
+        blog.setContent(content);
         User user=userRepository1.findById(userId).get();
         List<Blog>list=user.getBlogList();
         list.add(blog);
